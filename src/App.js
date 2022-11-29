@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import { connect } from 'react-redux';
 import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -18,4 +18,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect()(App);
