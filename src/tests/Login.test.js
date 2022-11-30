@@ -1,10 +1,18 @@
-import { screen } from '@testing-library/react';
+import { act, cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
+import mockFetch from '../../cypress/mocks/fetch';
 import App from '../App';
 import { renderWithRouterAndRedux } from './helpers/renderWithRouterAndRedux';
 
 describe('teste da página de Login', () => {
+  beforeEach(() => {
+    global.fetch = jest.fn(mockFetch);
+  });
+  afterEach(() => {
+    cleanup();
+  });
+
   it('Verifica se o botão é desabilitado com a inserção incorreta dos inputs', () => {
     renderWithRouterAndRedux(<App />);
 
@@ -37,6 +45,7 @@ describe('teste da página de Login', () => {
     expect(passwordInput.value).toBe('1234567');
     expect(btn).toBeEnabled();
 
+    act(() => userEvent.click(btn));
     userEvent.click(btn);
 
     expect(history.location.pathname).toBe('/meals');

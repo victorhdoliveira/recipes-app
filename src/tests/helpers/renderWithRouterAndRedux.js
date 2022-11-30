@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import { applyMiddleware, legacy_createStore as createStore } from 'redux';
 import thunk from 'redux-thunk';
-import reducer from '../../redux/reducers/food';
+import reducer from '../../redux/reducers';
 
 export const renderWithRouterAndRedux = (component, initialState, route = '/') => {
   const store = createStore(reducer, initialState, applyMiddleware(thunk));
