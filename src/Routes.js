@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
-import Meals from './pages/Meals';
+import Recipes from './pages/Recipes';
 
 function Routes() {
   return (
@@ -9,9 +9,9 @@ function Routes() {
     // a lógica referente aos ID das receitas
     <Switch>
       <Route exact path="/" component={ Login } />
-      <Route path="/meals" component={ Meals } />
-      {/* <Route path="/drinks" component={ } />
-      <Route path="/meals/:id-da-receita" component={ } />
+      <Route exact path="/meals" component={ Recipes } />
+      <Route exact path="/drinks" component={ Recipes } />
+      {/* <Route path="/meals/:id-da-receita" component={ } />
       <Route path="/drinks/:id-da-receita" component={ } />
       <Route path="/meals/:id-da-receita/in-progress" component={ } />
       <Route path="/drinks/:id-da-receita/in-progress" component={ } />
