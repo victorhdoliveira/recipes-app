@@ -1,0 +1,23 @@
+.detail-container {
+  padding-bottom: 30px;
+}
+
+.recomended-carousel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: no-wrap;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+
+.recomended-carousel .recipe-card {
+  width: 20%;
+  margin: 0 15%;
+}
+
+.recipe-btn {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  cursor: pointer;
+}

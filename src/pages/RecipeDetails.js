@@ -1,31 +1,45 @@
 import { shape, string } from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchRecipeById } from '../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import RecipeCard from '../components/RecipeCard';
+import { fetchRecipeById, fetchRecipes } from '../redux/actions';
+import './RecipeDetails.css';
 
 export default function RecipeDetails({ match, location: { pathname } }) {
   const [isLoading, setIsLoading] = useState(true);
   const [recipe, setRecipe] = useState({});
   const [ingredientList, setIngredientList] = useState([]);
+  const [recomendedRecipes, setRecomendedRecipes] = useState([]);
   const [embededVideo, setEmbededVideo] = useState(false);
+  const dispatch = useDispatch();
 
   const { params: { id } } = match;
   const type = pathname.split('/')[1];
-  const dispatch = useDispatch();
+  const otherType = type === 'meals' ? 'drinks' : 'meals';
+  const allRecipes = useSelector((state) => state[otherType].recipes);
 
   const getAndSaveRecipe = async () => {
     const newRecipe = await dispatch(fetchRecipeById(type, id));
-    setRecipe(newRecipe);
-    setIsLoading(false);
+    if (newRecipe) {
+      setRecipe(newRecipe);
+      setIsLoading(false);
+    }
   };
 
   // Recebe uma palavra e a retorna em maiúsculo no singular
   const capitalize = (word) => word[0].toUpperCase() + word.substring(1, word.length - 1);
+  const prefix = `str${capitalize(type)}`;
 
-  // "ComponentDidMount"
   useEffect(() => {
+    setIsLoading(true);
     getAndSaveRecipe();
-  }, []);
+  }, [type]);
+
+  useEffect(() => {
+    const limit = 6;
+    dispatch(fetchRecipes(otherType));
+    setRecomendedRecipes(allRecipes.slice(0, limit));
+  }, [type, allRecipes]);
 
   // "Seta" o link do video e a lista de ingredientes usando as
   // informações do objeto salvo no "DidMount"
@@ -48,37 +62,59 @@ export default function RecipeDetails({ match, location: { pathname } }) {
       }
       setIngredientList(list);
     }
-  }, [recipe, type]);
+  }, [recipe]);
 
   if (isLoading) return <h1>Carregando...</h1>;
-  const prefix = `str${capitalize(type)}`;
 
   return (
-    <div>
-      <p data-testid="recipe-title">{recipe[prefix]}</p>
-      <img
-        src={ recipe[`${prefix}Thumb`] }
-        alt={ recipe[prefix] }
-        data-testid="recipe-photo"
-      />
-      <p data-testid="recipe-category">
-        {recipe.strCategory}
-        {(type === 'drinks') && ` - ${recipe.strAlcoholic}`}
-      </p>
-      <ol>
-        {ingredientList.map((ingredient, i) => (
-          <li key={ ingredient } data-testid={ `${i}-ingredient-name-and-measure` }>
-            <span>{`${ingredient}`}</span>
-            {' - '}
-            <span>{recipe[`strMeasure${i + 1}`]}</span>
-          </li>
-        ))}
-      </ol>
-      <p data-testid="instructions">{recipe.strInstructions}</p>
-      { embededVideo && (
-        <iframe data-testid="video" title={ recipe[prefix] } src={ embededVideo } />
-      )}
-    </div>
+    <>
+      <div className="detail-container">
+        <p data-testid="recipe-title">{recipe[prefix]}</p>
+        <img
+          src={ recipe[`${prefix}Thumb`] }
+          alt={ recipe[prefix] }
+          data-testid="recipe-photo"
+        />
+        <p data-testid="recipe-category">
+          {recipe.strCategory}
+          {(type === 'drinks') && ` - ${recipe.strAlcoholic}`}
+        </p>
+        <ul>
+          {ingredientList.map((ingredient, i) => (
+            <li key={ ingredient } data-testid={ `${i}-ingredient-name-and-measure` }>
+              <span>{`${ingredient}`}</span>
+              {' - '}
+              <span>{recipe[`strMeasure${i + 1}`]}</span>
+            </li>
+          ))}
+        </ul>
+        <p data-testid="instructions">{recipe.strInstructions}</p>
+        { embededVideo && (
+          <iframe data-testid="video" title={ recipe[prefix] } src={ embededVideo } />
+        )}
+        <div className="recomended-carousel">
+          {recomendedRecipes.map((rec, i) => (
+            <RecipeCard
+              key={ i }
+              name={ rec[`str${capitalize(otherType)}`] }
+              type={ otherType }
+              id={ rec[`id${capitalize(otherType)}`] }
+              cardTestId="recommendation-card"
+              titleTestId="recommendation-title"
+              thumb={ rec[`str${capitalize(otherType)}Thumb`] }
+              index={ i }
+            />
+          ))}
+        </div>
+      </div>
+      <button
+        type="button"
+        className="recipe-btn"
+        data-testid="start-recipe-btn"
+      >
+        Start Recipe
+      </button>
+    </>
   );
 }
 
