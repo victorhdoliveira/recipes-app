@@ -27,19 +27,23 @@ function Recipes({ location }) {
     <div>
       <div>
         {(type === 'meals' && recipesList.length) ? (
-          recipesList.map(({ strMeal, strMealThumb }, i) => (
+          recipesList.map(({ strMeal, strMealThumb, idMeal }, i) => (
             <RecipeCard
               key={ i }
               name={ strMeal }
+              type={ type }
+              id={ idMeal }
               thumb={ strMealThumb }
               index={ i }
             />
           ))
         ) : (
-          recipesList.map(({ strDrink, strDrinkThumb }, i) => (
+          recipesList.map(({ strDrink, strDrinkThumb, idDrink }, i) => (
             <RecipeCard
               key={ i }
               name={ strDrink }
+              type={ type }
+              id={ idDrink }
               thumb={ strDrinkThumb }
               index={ i }
             />
