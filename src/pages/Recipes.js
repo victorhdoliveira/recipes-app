@@ -8,6 +8,9 @@ import { fetchRecipes } from '../redux/actions';
 
 function Recipes({ location }) {
   const [recipesList, setRecipesList] = useState([]);
+  const [isHeader, setIsHeader] = useState(
+    { profileIcon: false, searchIcon: false },
+  );
   const dispatch = useDispatch();
 
   const { pathname } = location;
@@ -26,7 +29,7 @@ function Recipes({ location }) {
 
   return (
     <div>
-      <Header location={ location } />
+      <Header location={ location } isHeader={ isHeader } setIsHeader={ setIsHeader } />
       <div>
         {(type === 'meals' && recipesList.length) ? (
           recipesList.map(({ strMeal, strMealThumb, idMeal }, i) => (

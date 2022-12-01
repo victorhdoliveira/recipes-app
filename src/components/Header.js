@@ -2,8 +2,13 @@ import React, { useState, useEffect } from 'react';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
-export default function Header({ location: { pathname } }) {
+export default function Header({ isHeader, setIsHeader, location: { pathname } }) {
   const [pageTitle, setPageTitle] = useState('');
+  console.log(isHeader);
+
+  useEffect(() => {
+    setIsHeader({ profileIcon: true, searchIcon: true });
+  }, []);
 
   useEffect(() => {
     setPageTitle(() => {
@@ -13,24 +18,26 @@ export default function Header({ location: { pathname } }) {
     });
   }, [pathname]);
 
-  console.log(location);
-
   return (
     <div>
-      { (pathname === '') ? (
-        <div className="header-conteiner">
-          <h1>{pageTitle}</h1>
+      {(isHeader.profileIcon ? (
+        <>
+          <div className="header-conteiner">
+            <h1>{pageTitle}</h1>
+          </div>
 
           <button type="button">
             <img src={ profileIcon } alt="profile Icon" />
           </button>
+        </>
 
-          <button type="button">
-            <img src={ searchIcon } alt="search Icon" />
-          </button>
+      ) : (<p>...</p>))}
 
-        </div>
-      ) : (<p>...</p>)}
+      {(isHeader.searchIcon ? (
+        <button type="button">
+          <img src={ searchIcon } alt="search Icon" />
+        </button>
+      ) : (<p>...</p>))}
 
     </div>
   );
