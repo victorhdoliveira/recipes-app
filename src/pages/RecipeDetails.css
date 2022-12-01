@@ -11,13 +11,13 @@
 }
 
 .recomended-carousel .recipe-card {
-  width: 20%;
   margin: 0 15%;
+  width: 20%;
 }
 
 .recipe-btn {
-  position: fixed;
   bottom: 0;
-  width: 100%;
   cursor: pointer;
+  position: fixed;
+  width: 100%;
 }
