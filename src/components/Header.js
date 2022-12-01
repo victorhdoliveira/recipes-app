@@ -13,19 +13,24 @@ export default function Header({ location: { pathname } }) {
     });
   }, [pathname]);
 
-  console.log(pageTitle);
+  console.log(location);
 
   return (
-    <div className="header-conteiner">
-      <h1>{pageTitle}</h1>
+    <div>
+      { (pathname === '') ? (
+        <div className="header-conteiner">
+          <h1>{pageTitle}</h1>
 
-      <button type="button">
-        <img src={ profileIcon } alt="profile Icon" />
-      </button>
+          <button type="button">
+            <img src={ profileIcon } alt="profile Icon" />
+          </button>
 
-      <button type="button">
-        <img src={ searchIcon } alt="search Icon" />
-      </button>
+          <button type="button">
+            <img src={ searchIcon } alt="search Icon" />
+          </button>
+
+        </div>
+      ) : (<p>...</p>)}
 
     </div>
   );
