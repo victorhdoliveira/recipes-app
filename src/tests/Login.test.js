@@ -46,7 +46,6 @@ describe('teste da página de Login', () => {
     expect(btn).toBeEnabled();
 
     act(() => userEvent.click(btn));
-    userEvent.click(btn);
 
     expect(history.location.pathname).toBe('/meals');
   });
