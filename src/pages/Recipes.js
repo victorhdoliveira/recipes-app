@@ -2,6 +2,7 @@ import { shape, string } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 import RecipeCard from '../components/RecipeCard';
 import { fetchRecipes } from '../redux/actions';
 
@@ -25,6 +26,7 @@ function Recipes({ location }) {
 
   return (
     <div>
+      <Header location={ location } />
       <div>
         {(type === 'meals' && recipesList.length) ? (
           recipesList.map(({ strMeal, strMealThumb, idMeal }, i) => (
