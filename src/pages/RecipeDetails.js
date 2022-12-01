@@ -106,15 +106,15 @@ export default function RecipeDetails({ match, location: { pathname } }) {
       favoriteIndex = i;
       return fav.id === id;
     });
+
     if (isNotFavorite) {
       favorites.push(favorite);
-      localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
-      setIsFavorite(true);
     } else {
       favorites.splice(favoriteIndex, 1);
-      localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
-      setIsFavorite(false);
     }
+
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
+    setIsFavorite(isNotFavorite);
   };
 
   const handleStart = () => {
