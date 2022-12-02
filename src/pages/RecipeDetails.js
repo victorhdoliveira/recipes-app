@@ -99,7 +99,7 @@ export default function RecipeDetails({ match, location: { pathname } }) {
       name: recipe[prefix],
       image: recipe[`${prefix}Thumb`],
     };
-    // console.log(favorite);
+
     const favorites = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
     let favoriteIndex;
     const isNotFavorite = !favorites.find((fav, i) => {
