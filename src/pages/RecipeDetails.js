@@ -1,9 +1,15 @@
 import { shape, string } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import RecipeCard from '../components/RecipeCard';
+import blackHeart from '../images/blackHeartIcon.svg';
+import shareSvg from '../images/shareIcon.svg';
+import whiteHeart from '../images/whiteHeartIcon.svg';
 import { fetchRecipeById, fetchRecipes } from '../redux/actions';
 import './RecipeDetails.css';
+
+const copy = require('clipboard-copy');
 
 export default function RecipeDetails({ match, location: { pathname } }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -11,12 +17,19 @@ export default function RecipeDetails({ match, location: { pathname } }) {
   const [ingredientList, setIngredientList] = useState([]);
   const [recomendedRecipes, setRecomendedRecipes] = useState([]);
   const [embededVideo, setEmbededVideo] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { params: { id } } = match;
   const type = pathname.split('/')[1];
   const otherType = type === 'meals' ? 'drinks' : 'meals';
   const allRecipes = useSelector((state) => state[otherType].recipes);
+
+  const storage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  const data = storage && storage[type];
+  const isInProgress = data && !!data[id];
 
   const getAndSaveRecipe = async () => {
     const newRecipe = await dispatch(fetchRecipeById(type, id));
@@ -30,14 +43,21 @@ export default function RecipeDetails({ match, location: { pathname } }) {
   const capitalize = (word) => word[0].toUpperCase() + word.substring(1, word.length - 1);
   const prefix = `str${capitalize(type)}`;
 
+  const getFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    const bool = !!favorites.find((favorite) => favorite.id === id);
+    setIsFavorite(bool);
+  };
+
   useEffect(() => {
     setIsLoading(true);
+    dispatch(fetchRecipes(otherType));
+    getFavorite();
     getAndSaveRecipe();
   }, [type]);
 
   useEffect(() => {
     const limit = 6;
-    dispatch(fetchRecipes(otherType));
     setRecomendedRecipes(allRecipes.slice(0, limit));
   }, [type, allRecipes]);
 
@@ -64,11 +84,61 @@ export default function RecipeDetails({ match, location: { pathname } }) {
     }
   }, [recipe]);
 
+  const handleCopy = () => {
+    copy(`http://localhost:3000${pathname}`);
+    setIsCopied(true);
+  };
+
+  const handleFavorite = () => {
+    const favorite = {
+      id,
+      type: (type === 'meals') ? 'meal' : 'drink',
+      nationality: recipe.strArea || '',
+      category: recipe.strCategory,
+      alcoholicOrNot: recipe.strAlcoholic || '',
+      name: recipe[prefix],
+      image: recipe[`${prefix}Thumb`],
+    };
+
+    const favorites = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    let favoriteIndex;
+    const isNotFavorite = !favorites.find((fav, i) => {
+      favoriteIndex = i;
+      return fav.id === id;
+    });
+
+    if (isNotFavorite) {
+      favorites.push(favorite);
+    } else {
+      favorites.splice(favoriteIndex, 1);
+    }
+
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
+    setIsFavorite(isNotFavorite);
+  };
+
+  const handleStart = () => {
+    history.push(`/${type}/${id}/in-progress`);
+  };
+
   if (isLoading) return <h1>Carregando...</h1>;
 
   return (
     <>
       <div className="detail-container">
+        <header>
+          <button type="button" data-testid="share-btn" onClick={ handleCopy }>
+            <img src={ shareSvg } alt="compartilhar" />
+          </button>
+          <button type="button" onClick={ handleFavorite }>
+            <img
+              data-testid="favorite-btn"
+              src={ isFavorite ? blackHeart : whiteHeart }
+              alt="favoritar"
+            />
+          </button>
+          {isCopied && <p>Link copied!</p>}
+        </header>
         <p data-testid="recipe-title">{recipe[prefix]}</p>
         <img
           src={ recipe[`${prefix}Thumb`] }
@@ -111,8 +181,9 @@ export default function RecipeDetails({ match, location: { pathname } }) {
         type="button"
         className="recipe-btn"
         data-testid="start-recipe-btn"
+        onClick={ handleStart }
       >
-        Start Recipe
+        {isInProgress ? 'Continue Recipe' : 'Start Recipe'}
       </button>
     </>
   );
