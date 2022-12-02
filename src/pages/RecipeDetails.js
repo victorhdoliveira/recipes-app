@@ -51,9 +51,9 @@ export default function RecipeDetails({ match, location: { pathname } }) {
 
   useEffect(() => {
     setIsLoading(true);
-    getAndSaveRecipe();
     dispatch(fetchRecipes(otherType));
     getFavorite();
+    getAndSaveRecipe();
   }, [type]);
 
   useEffect(() => {
@@ -93,9 +93,9 @@ export default function RecipeDetails({ match, location: { pathname } }) {
     const favorite = {
       id,
       type: (type === 'meals') ? 'meal' : 'drink',
-      nationality: (type === 'meals') ? recipe.strArea : '',
+      nationality: recipe.strArea || '',
       category: recipe.strCategory,
-      alcoholicOrNot: (type === 'meals') ? '' : recipe.strAlcoholic,
+      alcoholicOrNot: recipe.strAlcoholic || '',
       name: recipe[prefix],
       image: recipe[`${prefix}Thumb`],
     };
@@ -106,15 +106,15 @@ export default function RecipeDetails({ match, location: { pathname } }) {
       favoriteIndex = i;
       return fav.id === id;
     });
+
     if (isNotFavorite) {
       favorites.push(favorite);
-      localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
-      setIsFavorite(true);
     } else {
       favorites.splice(favoriteIndex, 1);
-      localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
-      setIsFavorite(false);
     }
+
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
+    setIsFavorite(isNotFavorite);
   };
 
   const handleStart = () => {
