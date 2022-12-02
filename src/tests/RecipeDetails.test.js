@@ -9,12 +9,6 @@ describe('teste da página de Recipe', () => {
   beforeEach(async () => {
     global.fetch = jest.fn(mockFetch);
     const { history } = renderWithRouterAndRedux(<App />);
-    const emailInput = screen.getByTestId('email-input');
-    const passwordInput = screen.getByTestId('password-input');
-    const btn = screen.getByRole('button', { name: 'Entrar' });
-    userEvent.type(emailInput, 'nome@test.com');
-    userEvent.type(passwordInput, '12345678');
-    userEvent.click(btn);
 
     act(() => {
       history.push('/meals/52771');
