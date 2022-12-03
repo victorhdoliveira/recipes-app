@@ -1,0 +1,13 @@
+.favorite-card {
+  display: flex;
+  flex-flow: row;
+  padding: 10px 5%;
+}
+
+.favorite-card-image {
+  width: 100%;
+}
+
+.favorite-card-left, .favorite-card-right {
+  width: 50%;
+}

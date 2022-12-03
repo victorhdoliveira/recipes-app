@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import FavoriteRecipes from './pages/FavoriteRecipes';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import RecipeDetails from './pages/RecipeDetails';
@@ -16,10 +17,10 @@ function Routes() {
       <Route exact path="/meals/:id" component={ RecipeDetails } />
       <Route exact path="/drinks/:id" component={ RecipeDetails } />
       <Route path="/profile" component={ Profile } />
+      <Route path="/favorite-recipes" component={ FavoriteRecipes } />
       {/* <Route path="/meals/:id/in-progress" component={ } />
       <Route path="/drinks/:id/in-progress" component={ } />
-      <Route path="/done-recipes" component={ } />
-      <Route path="/favorite-recipes" component={ } /> */}
+      <Route path="/done-recipes" component={ } /> */}
     </Switch>
   );
 }
