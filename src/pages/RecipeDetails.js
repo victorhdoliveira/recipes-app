@@ -21,16 +21,16 @@ export default function RecipeDetails({ match, location: { pathname } }) {
   const otherType = type === 'meals' ? 'drinks' : 'meals';
   const allRecipes = useSelector((state) => state[otherType].recipes);
 
-  const storage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  const data = storage && storage[type];
-  const isInProgress = data && !!data[id];
+  const data = JSON.parse(
+    localStorage.getItem('inProgressRecipes'),
+  ) || { [type]: { [id]: '' } };
+
+  const isInProgress = !!data[type][id];
 
   const getAndSaveRecipe = async () => {
     const newRecipe = await dispatch(fetchRecipeById(type, id));
-    if (newRecipe) {
-      setRecipe(newRecipe);
-      setIsLoading(false);
-    }
+    setRecipe(newRecipe);
+    setIsLoading(!newRecipe);
   };
 
   // Recebe uma palavra e a retorna em maiúsculo no singular
