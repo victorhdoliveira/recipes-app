@@ -1,0 +1,17 @@
+.detail-container {
+  margin: 0;
+  padding: 0 10px;
+  padding-bottom: 30px;
+  width: calc(100% - 20px);
+}
+
+.detail-container img {
+  width: 100%;
+}
+
+.recipe-btn {
+  bottom: 0;
+  cursor: pointer;
+  position: fixed;
+  width: 100%;
+}

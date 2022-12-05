@@ -1,0 +1,13 @@
+.recomended-carousel {
+  display: flex;
+  flex-flow: row nowrap;
+  max-width: 100%;
+  min-width: 100%;
+  overflow-x: scroll;
+}
+
+.recomended-carousel .recipe-card {
+  margin: 0 5%;
+  min-width: 40%;
+  padding: 0;
+}

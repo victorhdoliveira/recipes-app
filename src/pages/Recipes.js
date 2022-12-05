@@ -18,7 +18,6 @@ function Recipes({ location }) {
   const allRecipes = useSelector((state) => state[type].recipes);
 
   useEffect(() => {
-    setRecipesList([]);
     dispatch(fetchRecipes(type));
   }, [type]);
 
@@ -26,6 +25,8 @@ function Recipes({ location }) {
     const limit = 12;
     setRecipesList(allRecipes.slice(0, limit));
   }, [allRecipes]);
+
+  const capitalize = (word) => word[0].toUpperCase() + word.substring(1, word.length - 1);
 
   return (
     <div>
@@ -35,29 +36,18 @@ function Recipes({ location }) {
         location={ location }
       />
       <div>
-        {(type === 'meals' && recipesList.length) ? (
-          recipesList.map(({ strMeal, strMealThumb, idMeal }, i) => (
+        {!recipesList.length
+          ? <h1>Carregando...</h1>
+          : recipesList.map((recipe, i) => (
             <RecipeCard
               key={ i }
-              name={ strMeal }
+              name={ recipe[`str${capitalize(type)}`] }
               type={ type }
-              id={ idMeal }
-              thumb={ strMealThumb }
+              id={ recipe[`id${capitalize(type)}`] }
+              thumb={ recipe[`str${capitalize(type)}Thumb`] }
               index={ i }
             />
-          ))
-        ) : (
-          recipesList.map(({ strDrink, strDrinkThumb, idDrink }, i) => (
-            <RecipeCard
-              key={ i }
-              name={ strDrink }
-              type={ type }
-              id={ idDrink }
-              thumb={ strDrinkThumb }
-              index={ i }
-            />
-          ))
-        )}
+          ))}
       </div>
       <Footer />
     </div>

@@ -1,0 +1,46 @@
+.detail-header {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+}
+
+.detail-header .multimedia {
+  align-items: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+  display: flex;
+  font-weight: 700;
+  justify-content: space-between;
+  padding: 5px 10px;
+  padding-bottom: 100px;
+  position: absolute;
+  top: 0;
+  width: calc(100% - 20px);
+  z-index: 2;
+}
+
+.detail-header .multimedia p {
+  margin-left: 10px;
+}
+
+.detail-header .multimedia button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.detail-header .multimedia button img {
+  filter: invert(100%);
+  height: 31px;
+  width: 31px;
+}
+
+.copy-toast {
+  font-weight: 300;
+  position: absolute;
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: 700;
+}

@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 import './RecipeCard.css';
 
 function RecipeCard(props) {
-  const { index, name, thumb, type, id } = props;
+  const { index, name, thumb, type, id, cardTestId, titleTestId } = props;
 
   return (
     <Link
       to={ `/${type}/${id}` }
-      data-testid={ `${index}-recipe-card` }
+      data-testid={ `${index}-${cardTestId}` }
       className="recipe-card"
     >
-      <p data-testid={ `${index}-card-name` }>{name}</p>
+      <p data-testid={ `${index}-${titleTestId}` }>{name}</p>
       <img data-testid={ `${index}-card-img` } src={ thumb } alt={ name } />
     </Link>
   );
@@ -24,6 +24,13 @@ RecipeCard.propTypes = {
   name: string.isRequired,
   type: string.isRequired,
   thumb: string.isRequired,
+  cardTestId: string,
+  titleTestId: string,
+};
+
+RecipeCard.defaultProps = {
+  cardTestId: 'recipe-card',
+  titleTestId: 'card-name',
 };
 
 export default RecipeCard;
