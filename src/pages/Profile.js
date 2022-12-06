@@ -1,13 +1,13 @@
 import { useHistory } from 'react-router-dom';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 export default function Profile({ location }) {
   const history = useHistory();
-  const getEmail = localStorage.getItem('user');
-  const startEmailPosition = 10;
-  const finishEmailPosition = getEmail.length - 2;
-  const userEmail = getEmail.slice(startEmailPosition, finishEmailPosition);
+  const userEmail = JSON.stringify(localStorage.getItem('user')).email || '';
+  // const startEmailPosition = 10;
+  // const finishEmailPosition = getEmail.length - 2;
+  // const userEmail = getEmail.slice(startEmailPosition, finishEmailPosition);
 
   const logout = () => {
     localStorage.clear();
