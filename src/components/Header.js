@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import useRenderHeader from '../hooks/useRenderHeader';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
@@ -8,6 +9,8 @@ export default function Header({
   renderSearchIcon,
   location: { pathname } }) {
   const [pageTitle, setPageTitle] = useState('');
+  const history = useHistory();
+
   // const [isHeader, setIsHeader] = useState(
   //   { profileIcon: false, searchIcon: false },
   // );
@@ -16,8 +19,6 @@ export default function Header({
     renderProfileIcon,
     renderSearchIcon,
   });
-
-  console.log(isHeader.searchIcon);
 
   useEffect(() => {
     setIsHeader({
@@ -55,6 +56,10 @@ export default function Header({
     });
   }, [pathname]);
 
+  const goProfile = () => {
+    history.push('/profile');
+  };
+
   return (
     <div>
       {(isHeader.profileIcon ? (
@@ -67,6 +72,7 @@ export default function Header({
             type="button"
             src={ profileIcon }
             data-testid="profile-top-btn"
+            onClick={ () => goProfile() }
           >
             <img src={ profileIcon } alt="profile Icon" />
           </button>
