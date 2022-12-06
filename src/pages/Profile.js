@@ -4,10 +4,10 @@ import Header from '../components/Header';
 
 export default function Profile({ location }) {
   const history = useHistory();
-  const userEmail = JSON.parse(localStorage.getItem('user')).email || '';
+  const getEmail = JSON.parse(localStorage.getItem('user')) || { email: '' };
   // const startEmailPosition = 10;
   // const finishEmailPosition = getEmail.length - 2;
-  // const userEmail = getEmail.slice(startEmailPosition, finishEmailPosition);
+  const userEmail = getEmail.email;
 
   const logout = () => {
     localStorage.clear();
