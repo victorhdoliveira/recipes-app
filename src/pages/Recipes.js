@@ -2,11 +2,15 @@ import { shape, string } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 import RecipeCard from '../components/RecipeCard';
 import { fetchRecipes } from '../redux/actions';
 
 function Recipes({ location }) {
   const [recipesList, setRecipesList] = useState([]);
+  // const [isHeader, setIsHeader] = useState(
+  //   { profileIcon: false, searchIcon: false },
+  // );
   const dispatch = useDispatch();
 
   const { pathname } = location;
@@ -26,6 +30,11 @@ function Recipes({ location }) {
 
   return (
     <div>
+      <Header
+        renderProfileIcon
+        renderSearchIcon
+        location={ location }
+      />
       <div>
         {!recipesList.length
           ? <h1>Carregando...</h1>

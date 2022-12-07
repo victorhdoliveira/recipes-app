@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import shareSvg from '../images/shareIcon.svg';
+import Header from '../components/Header';
 
 const copy = require('clipboard-copy');
 
-function DoneRecipes() {
+function DoneRecipes({ location }) {
   const [doneList, setdoneList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
@@ -23,6 +24,11 @@ function DoneRecipes() {
 
   return (
     <>
+    <Header
+      renderProfileIcon
+      renderSearchIcon={ false }
+      location={ location }
+    />
       <button
         data-testid="filter-by-all-btn"
         type="button"
@@ -88,5 +94,7 @@ function DoneRecipes() {
     </>
   );
 }
+
+DoneRecipes.propTypes = {}.isRequired;
 
 export default DoneRecipes;

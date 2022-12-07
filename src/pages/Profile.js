@@ -1,12 +1,13 @@
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
-export default function Profile() {
+export default function Profile({ location }) {
   const history = useHistory();
-  const getEmail = localStorage.getItem('user');
-  const startEmailPosition = 10;
-  const finishEmailPosition = getEmail.length - 2;
-  const userEmail = getEmail.slice(startEmailPosition, finishEmailPosition);
+  const getEmail = JSON.parse(localStorage.getItem('user')) || { email: '' };
+  // const startEmailPosition = 10;
+  // const finishEmailPosition = getEmail.length - 2;
+  const userEmail = getEmail.email;
 
   const logout = () => {
     localStorage.clear();
@@ -15,6 +16,11 @@ export default function Profile() {
 
   return (
     <>
+      <Header
+        renderProfileIcon
+        renderSearchIcon={ false }
+        location={ location }
+      />
       <p data-testid="profile-email">{userEmail}</p>
       <button
         type="button"
@@ -41,3 +47,4 @@ export default function Profile() {
     </>
   );
 }
+Profile.propTypes = {}.isRequired;
