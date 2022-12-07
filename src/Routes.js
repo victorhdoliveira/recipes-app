@@ -21,6 +21,8 @@ function Routes() {
       {/* <Route path="/drinks/:id/in-progress" component={ } /> */}
       <Route path="/done-recipes" component={ DoneRecipes } />
       <Route path="/favorite-recipes" component={ FavoriteRecipes } />
+      {/* <Route path="/meals/:id/in-progress" component={ } /> */}
+      <Route path="/drinks/:id/in-progress" component={ } />
     </Switch>
   );
 }
