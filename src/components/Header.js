@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import useRenderHeader from '../hooks/useRenderHeader';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
 
 export default function Header({
   renderProfileIcon,
@@ -10,6 +11,7 @@ export default function Header({
   location: { pathname } }) {
   const [pageTitle, setPageTitle] = useState('');
   const history = useHistory();
+  const [toggleSeach, setToggleSearch] = useState(false);
 
   // const [isHeader, setIsHeader] = useState(
   //   { profileIcon: false, searchIcon: false },
@@ -60,6 +62,14 @@ export default function Header({
     history.push('/profile');
   };
 
+  const toggleSearchBar = () => {
+    if (toggleSeach === false) {
+      setToggleSearch(true);
+    } else {
+      setToggleSearch(false);
+    }
+  };
+
   return (
     <div>
       {(isHeader.profileIcon ? (
@@ -85,9 +95,14 @@ export default function Header({
           type="button"
           src={ searchIcon }
           data-testid="search-top-btn"
+          onClick={ () => toggleSearchBar() }
         >
           <img src={ searchIcon } alt="search Icon" />
         </button>
+      ) : (<p />))}
+
+      {(toggleSeach ? (
+        <SearchBar />
       ) : (<p />))}
 
     </div>
