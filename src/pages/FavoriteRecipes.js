@@ -18,47 +18,48 @@ function FavoriteRecipes({ location }) {
   }, []);
 
   return (
-  <Header
-      renderProfileIcon
-      renderSearchIcon={ false }
-      location={ location }
-    />
-    <div>
-      <h2>FAVORITES</h2>
+    <>
+      <Header
+        renderProfileIcon
+        renderSearchIcon={ false }
+        location={ location }
+      />
       <div>
-        <button
-          type="button"
-          data-testid="filter-by-all-btn"
-          onClick={ () => setFilter('all') }
-        >
-          All
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-meal-btn"
-          onClick={ () => setFilter('meal') }
-        >
-          Foods
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-drink-btn"
-          onClick={ () => setFilter('drink') }
-        >
-          Drinks
-        </button>
+        <h2>FAVORITES</h2>
+        <div>
+          <button
+            type="button"
+            data-testid="filter-by-all-btn"
+            onClick={ () => setFilter('all') }
+          >
+            All
+          </button>
+          <button
+            type="button"
+            data-testid="filter-by-meal-btn"
+            onClick={ () => setFilter('meal') }
+          >
+            Foods
+          </button>
+          <button
+            type="button"
+            data-testid="filter-by-drink-btn"
+            onClick={ () => setFilter('drink') }
+          >
+            Drinks
+          </button>
+        </div>
+        {filteredList.map((data, i) => (
+          <FavoriteCard
+            key={ data.id }
+            index={ i }
+            data={ data }
+            handleClick={ setFavoriteList }
+          />))}
       </div>
-      {filteredList.map((data, i) => (
-        <FavoriteCard
-          key={ data.id }
-          index={ i }
-          data={ data }
-          handleClick={ setFavoriteList }
-        />))}
-    </div>
+    </>
   );
 }
 
 export default FavoriteRecipes;
 FavoriteRecipes.propTypes = {}.isRequired;
-
