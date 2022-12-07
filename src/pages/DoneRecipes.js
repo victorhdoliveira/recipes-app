@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import shareSvg from '../images/shareIcon.svg';
 import Header from '../components/Header';
+import shareSvg from '../images/shareIcon.svg';
 
 const copy = require('clipboard-copy');
 
@@ -24,11 +24,11 @@ function DoneRecipes({ location }) {
 
   return (
     <>
-    <Header
-      renderProfileIcon
-      renderSearchIcon={ false }
-      location={ location }
-    />
+      <Header
+        renderProfileIcon
+        renderSearchIcon={ false }
+        location={ location }
+      />
       <button
         data-testid="filter-by-all-btn"
         type="button"
