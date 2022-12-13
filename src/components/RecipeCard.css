@@ -1,9 +1,21 @@
-.recipe-card {
-  border-radius: 10%;
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-  padding: 10px;
-  text-align: center;
-  width: 10rem;
+@media ( min-width : 360px ) {
+
+  .recipe-card {
+    border-radius: 5%;
+    color: rgba(134, 38, 51);
+    display: flex;
+    flex-direction: column;
+    font-family: monospace;
+    font-size: medium;
+    height: fit-content;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    width: 8rem;
+  }
+
+  .image-card {
+    border-radius: 5%;
+  }
 }

@@ -1,0 +1,84 @@
+@media ( min-width : 360px ) {
+
+  section {
+    background-color: rgba(134, 38, 51);
+    font-family: monospace;
+    height: 640px;
+    margin: 0;
+  }
+
+  .login {
+    background-color: rgba(134, 38, 51);
+    color: black;
+    display: flex;
+    justify-content: center;
+  }
+
+  .login-screen {
+    align-items: center;
+    background-color: whitesmoke;
+    border: 3px solid rgba(240, 188, 66);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    justify-content: center;
+    margin-top: 100px;
+    width: 300px;
+  }
+
+  .login-div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-family: monospace;
+  }
+
+  .login-logo {
+    height: 200px;
+    margin-bottom: 30px;
+    text-align: center;
+    width: 200px;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-input {
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: black;
+    font-size: small;
+    font-weight: 700;
+    height: 15px;
+    justify-content: center;
+    margin: 2px;
+    padding: 5px;
+    width: 200px;
+  }
+
+  .login-input:focus {
+    background-color: white;
+    outline: none;
+  }
+
+  .btn-input {
+    background-color: rgba(155, 150, 150, 0.75);
+    border-radius: 5px;
+    color: black;
+    height: 28px;
+    margin-left: 55px;
+    margin-top: 10px;
+    width: 100px;
+  }
+
+  .btn-input:enabled {
+    background-color: rgba(134, 38, 51);
+    color: white;
+    font-weight: 650;
+  }
+
+}

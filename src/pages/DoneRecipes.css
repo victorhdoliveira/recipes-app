@@ -1,0 +1,60 @@
+@media ( min-width : 360px ) {
+
+  .all-btn {
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-weight: 700;
+    justify-content: space-evenly;
+    margin-left: 80px;
+    margin-right: 10px;
+    padding: 5px;
+    width: 60px;
+  }
+
+  .meal-btn, .drink-btn {
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-weight: 700;
+    justify-content: space-evenly;
+    margin-right: 10px;
+    padding: 5px;
+    width: 60px;
+  }
+
+  .recipes {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .recipe-name-link {
+    color: black;
+    font-family: monospace;
+    font-size: large;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .recipes-name {
+    margin-top: 40px;
+  }
+
+  .recipes-img {
+    border-radius: 5px;
+    height: 125px;
+    width: 125px;
+  }
+
+  .share-btn {
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-weight: 700;
+  }
+
+  .linkCopied {
+    font-family: monospace;
+    margin-top: 20px;
+  }
+}

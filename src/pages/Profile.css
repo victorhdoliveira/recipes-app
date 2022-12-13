@@ -1,0 +1,18 @@
+.profile-email {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.done-btn, .fav-btn, .logout-btn {
+  align-items: center;
+  display: flex;
+  font-family: monospace;
+  height: 20px;
+  margin-left: 110px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.profile-btn {
+  margin-right: 5px;
+}

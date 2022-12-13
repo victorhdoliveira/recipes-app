@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { cocktailDetails, mealDetails } from '../components/services/dataFetchApi';
+import './RecipeInProgress.css';
 
 function RecipeInProgress() {
   const { id } = useParams();

@@ -61,24 +61,28 @@ function FavoriteCard({ data, index, handleClick }) {
       </Link>
       <div className="favorite-card-right">
         <div>
-          <Link to={ `/${type}s/${id}` } data-testid={ `${index}-horizontal-name` }>
+          <Link
+            to={ `/${type}s/${id}` }
+            data-testid={ `${index}-horizontal-name` }
+            className="recipe-name"
+          >
             { name }
           </Link>
-          <p data-testid={ `${index}-horizontal-top-text` }>
+          <p data-testid={ `${index}-horizontal-top-text` } className="recipe-data">
             {nationality || alcoholicOrNot}
             {' - '}
             {category}
           </p>
         </div>
         <div>
-          <button type="button" onClick={ handleCopy }>
+          <button type="button" onClick={ handleCopy } className="btns">
             <img
               src={ shareSvg }
               data-testid={ `${index}-horizontal-share-btn` }
               alt="compartilhar"
             />
           </button>
-          <button type="button" onClick={ handleFavorite }>
+          <button type="button" onClick={ handleFavorite } className="btns">
             <img
               data-testid={ `${index}-horizontal-favorite-btn` }
               src={ isFavorite ? blackHeart : whiteHeart }

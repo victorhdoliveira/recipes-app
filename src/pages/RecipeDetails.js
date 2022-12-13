@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import DetailBody from '../components/DetailBody';
 import DetailHeader from '../components/DetailHeader';
+import Loading from '../components/Loading';
 import RecomendedCarousel from '../components/RecomendedCarousel';
 import { fetchRecipeById, fetchRecipes } from '../redux/actions';
 import './RecipeDetails.css';
@@ -52,7 +53,7 @@ export default function RecipeDetails({ match, location: { pathname } }) {
     history.push(`/${type}/${id}/in-progress`);
   };
 
-  if (isLoading) return <h1>Carregando...</h1>;
+  if (isLoading) return <Loading />;
 
   return (
     <>

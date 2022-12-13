@@ -13,7 +13,12 @@ function RecipeCard(props) {
       className="recipe-card"
     >
       <p data-testid={ `${index}-${titleTestId}` }>{name}</p>
-      <img data-testid={ `${index}-card-img` } src={ thumb } alt={ name } />
+      <img
+        className="image-card"
+        data-testid={ `${index}-card-img` }
+        src={ thumb }
+        alt={ name }
+      />
     </Link>
   );
 }

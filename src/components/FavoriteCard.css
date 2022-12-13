@@ -5,9 +5,32 @@
 }
 
 .favorite-card-image {
+  border-radius: 5%;
   width: 100%;
 }
 
 .favorite-card-left, .favorite-card-right {
   width: 50%;
+}
+
+.recipe-name {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.recipe-data {
+  display: flex;
+  justify-content: center;
+}
+
+.btns {
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+  margin-left: 60px;
+  width: 50px;
 }

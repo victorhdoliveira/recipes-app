@@ -5,8 +5,8 @@ import FavoriteRecipes from './pages/FavoriteRecipes';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import RecipeDetails from './pages/RecipeDetails';
-import Recipes from './pages/Recipes';
 import RecipeInProgress from './pages/RecipeInProgress';
+import Recipes from './pages/Recipes';
 
 function Routes() {
   return (

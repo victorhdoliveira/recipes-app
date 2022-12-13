@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import FavoriteCard from '../components/FavoriteCard';
 import Header from '../components/Header';
+import './FavoriteRecipes.css';
 
 function FavoriteRecipes({ location }) {
   const [favoriteList, setFavoriteList] = useState([]);
@@ -25,12 +26,13 @@ function FavoriteRecipes({ location }) {
         location={ location }
       />
       <div>
-        <h2>FAVORITES</h2>
-        <div>
+        {/* <h2>FAVORITES</h2> */}
+        <div className="divFilterBtn">
           <button
             type="button"
             data-testid="filter-by-all-btn"
             onClick={ () => setFilter('all') }
+            className="filterBtn"
           >
             All
           </button>
@@ -38,6 +40,7 @@ function FavoriteRecipes({ location }) {
             type="button"
             data-testid="filter-by-meal-btn"
             onClick={ () => setFilter('meal') }
+            className="filterBtn"
           >
             Foods
           </button>
@@ -45,6 +48,7 @@ function FavoriteRecipes({ location }) {
             type="button"
             data-testid="filter-by-drink-btn"
             onClick={ () => setFilter('drink') }
+            className="filterBtn"
           >
             Drinks
           </button>

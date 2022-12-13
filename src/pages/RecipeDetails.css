@@ -9,9 +9,19 @@
   width: 100%;
 }
 
+h2 {
+  color: rgba(134, 38, 51);
+}
+
 .recipe-btn {
+  background-color: rgba(134, 38, 51);
+  border-radius: 5px;
   bottom: 0;
+  color: white;
   cursor: pointer;
-  position: fixed;
-  width: 100%;
+  display: flex;
+  font-weight: 600;
+  justify-content: center;
+  margin-left: 35%;
+  width: 30%;
 }

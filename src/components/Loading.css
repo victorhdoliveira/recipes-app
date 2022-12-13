@@ -1,0 +1,14 @@
+@media ( min-width : 360px ) {
+
+  .loading {
+    display: flex;
+    justify-content: center;
+  }
+
+  .loadingIcon {
+    background-color: rgba(134, 38, 51);
+    border-radius: 50%;
+    height: 50%;
+    margin-top: 60%;
+  }
+}

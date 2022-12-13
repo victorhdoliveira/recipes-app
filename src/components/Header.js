@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BiSearchAlt2, BiUser } from 'react-icons/bi';
+import { Link, useHistory } from 'react-router-dom';
 import useRenderHeader from '../hooks/useRenderHeader';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
+import LogoHeader from '../images/LogoHeader.png';
+// import profileIcon from '../images/profileIcon.svg';
+// import searchIcon from '../images/searchIcon.svg';
+import './Header.css';
 import SearchBar from './SearchBar';
 
 export default function Header({
@@ -71,41 +74,43 @@ export default function Header({
   };
 
   return (
-    <div>
-      {(isHeader.profileIcon ? (
-        <>
-          <div className="header-conteiner">
-            <h1 data-testid="page-title">{pageTitle}</h1>
-          </div>
-
+    <header>
+      <div className="header-container">
+        <Link to="/meals">
+          <img src={ LogoHeader } alt="logo" className="logo" />
+        </Link>
+        {(isHeader.searchIcon ? (
           <button
             type="button"
-            src={ profileIcon }
+            // src={ searchIcon }
+            data-testid="search-top-btn"
+            onClick={ () => toggleSearchBar() }
+            className="header-btn"
+          >
+            {/* <img src={ searchIcon } alt="search Icon" /> */}
+            <BiSearchAlt2 size={ 30 } />
+          </button>
+        ) : (<p />))}
+
+        {(isHeader.profileIcon ? (
+          <button
+            type="button"
+            // src={ profileIcon }
             data-testid="profile-top-btn"
             onClick={ () => goProfile() }
+            className="header-btn"
           >
-            <img src={ profileIcon } alt="profile Icon" />
+            {/* <img src={ profileIcon } alt="profile Icon" /> */}
+            <BiUser size={ 30 } />
           </button>
-        </>
 
-      ) : (<p />))}
-
-      {(isHeader.searchIcon ? (
-        <button
-          type="button"
-          src={ searchIcon }
-          data-testid="search-top-btn"
-          onClick={ () => toggleSearchBar() }
-        >
-          <img src={ searchIcon } alt="search Icon" />
-        </button>
-      ) : (<p />))}
-
+        ) : (<p />))}
+      </div>
+      <h1 data-testid="page-title" className="page-title">{pageTitle}</h1>
       {(toggleSeach ? (
         <SearchBar />
       ) : (<p />))}
-
-    </div>
+    </header>
   );
 }
 

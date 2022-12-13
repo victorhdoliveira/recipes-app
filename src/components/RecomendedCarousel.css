@@ -1,13 +1,19 @@
 .recomended-carousel {
   display: flex;
   flex-flow: row nowrap;
+  margin: 0 5%;
   max-width: 100%;
-  min-width: 100%;
+  min-width: 80%;
   overflow-x: scroll;
+  padding: 0;
 }
 
-.recomended-carousel .recipe-card {
+.recipe-card {
+  background-color: whitesmoke;
+  color: black;
+  font-family: monospace;
   margin: 0 5%;
   min-width: 40%;
   padding: 0;
 }
+

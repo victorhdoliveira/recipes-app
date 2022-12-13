@@ -1,0 +1,27 @@
+.search-input {
+  background-color: white;
+  border: 1px solid rgba(134, 38, 51);
+  border-radius: 5px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  padding: 2px;
+}
+
+.radio-search {
+  display: flex;
+  font-family: monospace;
+  justify-content: space-evenly;
+  margin-bottom: 7px;
+  margin-top: 0;
+}
+
+.search-btn {
+  background-color: rgba(134, 38, 51);
+  border-radius: 5px;
+  color: white;
+  font-weight: 550;
+}
+
+.search-btn:hover {
+  opacity: 0.85;
+}

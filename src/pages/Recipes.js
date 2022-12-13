@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import Loading from '../components/Loading';
 import RecipeCard from '../components/RecipeCard';
 import { fetchRecipes } from '../redux/actions';
+import './Recipes.css';
 
 function Recipes({ location }) {
   const [recipesList, setRecipesList] = useState([]);
@@ -35,9 +37,9 @@ function Recipes({ location }) {
         renderSearchIcon
         location={ location }
       />
-      <div>
+      <div className="recipes-list">
         {!recipesList.length
-          ? <h1>Carregando...</h1>
+          ? <Loading />
           : recipesList.map((recipe, i) => (
             <RecipeCard
               key={ i }

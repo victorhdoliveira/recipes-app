@@ -1,0 +1,16 @@
+@media ( min-width : 360px ) {
+
+  .divFilterBtn {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+  }
+
+  .filterBtn {
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-weight: 700;
+    padding: 5px;
+  }
+}
