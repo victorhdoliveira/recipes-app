@@ -1,7 +1,7 @@
 <h1 align=center> Projeto Recipes-App: Like a Chef </h1>
 
 <p>Deploy:
-  <a href="https://victorhdoliveira.github.io/recipes-app/>
+  <a href="https://victorhdoliveira.github.io/recipes-app"/>
    Like a Chef
   </a>
 </p>
